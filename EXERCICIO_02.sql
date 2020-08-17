@@ -4,9 +4,27 @@
  1 ) traga os funcionarios que trabalhe no departamento de filmes 
  ou no departamento de roupas */
  
+ 
+     
 		SELECT NOME,DEPARTAMENTO FROM FUNCIONARIOS
 		WHERE
 		DEPARTAMENTO = 'filmes' OR DEPARTAMENTO ='roupas';
+		
+		
+		
+		/*-----------------------------------correção 1 -------------------------------*/
+		
+		/* primeiro comando para capitar quantidades ,ordenar com performance */
+		SELECT COUNT(*), DEPARTAMENTO
+		FROM FUNCIONARIOS
+		group by departamento
+		order by 1;
+		
+		/*Correção da aula  53 - Roupas e 21 filmes. seguir a sequencia de quem tem mais chanses de ter uma saida verdadeira */
+		
+		SELECT * FROM FUNCIONARIOS
+		WHERE
+		DEPARTAMENTO = 'roupas' OR DEPARTAMENTO ='filmes';
  
  
 /* 2 )o gestor de marketing pediu a lista das funcionarias
@@ -16,12 +34,50 @@
  
 			SELECT NOME,DEPARTAMENTO,SEXO FROM FUNCIONARIOS
 			WHERE 
-			SEXO = 'Feminino' AND (DEPARTAMENTO = 'filmes' OR DEPARTAMENTO = 'roupas');
+			SEXO = 'Feminino' AND (DEPARTAMENTO = 'lar' OR DEPARTAMENTO = 'filmes');
+			
+    
+		/*-----------------------------------correção 2 -------------------------------*/
+		
+		/* primeiro filtrar a quantidade do sexo feminino */
+		
+		SELECT COUNT(*), SEXO
+		FROM FUNCIONARIOS
+		group by SEXO;
+		
+		
+			/* primeiro comando para capitar quantidades ,ordenar com performance */
+		SELECT COUNT(*), DEPARTAMENTO
+		FROM FUNCIONARIOS
+		group by departamento
+		order by 1;
+		
+		--52 - lar / 21 - Filmes 
+		
+			SELECT NOME,DEPARTAMENTO,SEXO FROM FUNCIONARIOS
+			WHERE 
+			(DEPARTAMENTO = 'lar' AND SEXO = 'Feminino')
+			OR
+			(DEPARTAMENTO = 'Filmes' AND SEXO = 'Feminino');
  
  
  
  /*3 )TRAGA OS FUNCIONARIOS DO SEXO MASCULINO 
  OU OS FUNCIONARIOS QUE TRABALHE NO SETOR JARDIM*/
+ 
+ 
+ 
+		SELECT COUNT(*), SEXO
+		FROM FUNCIONARIOS
+		group by SEXO;
+		
+		
+		SELECT COUNT(*), DEPARTAMENTO
+		FROM FUNCIONARIOS
+		group by DEPARTAMENTO;
+		
+		-- MASCULINO 484    /  47
+ 
  
 			SELECT NOME,DEPARTAMENTO,SEXO FROM FUNCIONARIOS
 			WHERE 
@@ -55,7 +111,6 @@ insert into funcionarios values (6,'Phillips','bphillips5@time.com','Masculino',
 insert into funcionarios values (7,'Williamson','rwilliamson6@ted.com','Masculino','Computadores','5/14/2006',65889,'Dental Hygienist',6);
 insert into funcionarios values (8,'Harris','aharris7@ucoz.com','Feminino','Brinquedos','8/12/2003',84427,'Safety Technician I',4);
 insert into funcionarios values (9,'James','rjames8@prnewswire.com','Masculino','Joalheria','9/7/2005',108657,'Sales Associate',2);
-
 insert into funcionarios values (11,'Jacobs','jjacobsa@sbwire.com','Feminino','Joalheria','11/27/2003',121966,'Community Outreach Specialist',7);
 insert into funcionarios values (12,'Black','mblackb@edublogs.org','Masculino','Roupas','2/4/2003',44179,'Data Coordiator',7);
 insert into funcionarios values (13,'Schmidt','sschmidtc@state.gov','Masculino','Bebês','10/13/2002',85227,'Compensation Analyst',3);
@@ -65,7 +120,6 @@ insert into funcionarios values (16,'Medina','smedinaf@amazonaws.com','Feminino'
 insert into funcionarios values (17,'Morgan','dmorgang@123-reg.co.uk','Feminino','Crianças','5/4/2011',148952,'Programmer IV',6);
 insert into funcionarios values (18,'Nguyen','jnguyenh@google.com','Masculino','Lar','11/3/2014',93804,'Geologist II',5);
 insert into funcionarios values (19,'Day','rdayi@chronoengine.com','Masculino','Eletronicos','9/22/2004',109890,'VP Sales',3);
-
 insert into funcionarios values (21,'Bryant','sbryantk@wunderground.com','Feminino','Industrial','8/12/2005',78052,'Software Consultant',3);
 insert into funcionarios values (22,'Alexander','kalexanderl@marketwatch.com','Masculino','Automotivo','12/26/2011',144724,'Marketing Assistant',2);
 insert into funcionarios values (23,'Chapman','jchapmanm@archive.org','Feminino','Joalheria','4/12/2001',126103,'Senior Developer',4);
@@ -78,7 +132,6 @@ insert into funcionarios values (29,'Price','cprices@Brasil.gov','Feminino','Rou
 insert into funcionarios values (30,'Weaver','dweavert@shinystat.com','Masculino','Beleza','2/17/2012',83144,'Account Representative III',2);
 insert into funcionarios values (31,'Willis','hwillisu@army.mil','Feminino','Ferramentas','10/21/2012',113507,'Accountant I',7);
 insert into funcionarios values (32,'Torres','ltorresv@amazon.de','Masculino','Games','4/7/2014',78245,'Nuclear Power Engineer',6);
-
 insert into funcionarios values (35,'Smith','bsmithy@statcounter.com','Feminino','Books','6/13/2013',94884,'Librarian',7);
 insert into funcionarios values (36,'Bradley','nbradleyz@goodreads.com','Masculino','Outdoors','12/28/2008',107222,'Payment Adjustment Coordinator',3);
 insert into funcionarios values (37,'Cruz','rcruz10@blinklist.com','Feminino','Lar','5/20/2000',61739,'Quality Engineer',1);
@@ -88,7 +141,6 @@ insert into funcionarios values (40,'Hawkins','phawkins13@twitpic.com','Feminino
 insert into funcionarios values (41,'Allen','jallen14@ustream.tv','Feminino','Bebês','5/10/2001',89680,'Web Developer III',6);
 insert into funcionarios values (42,'Watkins','mwatkins15@wiley.com','Masculino','Computadores','4/1/2008',125668,'Executive Secretary',7);
 insert into funcionarios values (43,'Ferguson','mferguson16@qq.com','Masculino','Esporte','5/29/2009',82960,'Account Representative III',6);
-
 insert into funcionarios values (45,'Nguyen','mnguyen18@biblegateway.com','Masculino','Automotivo','1/24/2002',108378,'Electrical Engineer',7);
 insert into funcionarios values (46,'Lawrence','jlawrence19@linkedin.com','Masculino','Outdoors','12/11/2011',133424,'Junior Executive',7);
 insert into funcionarios values (47,'Oliver','joliver1a@cnbc.com','Feminino','Roupas','8/30/2013',42797,'Software Engineer III',5);
